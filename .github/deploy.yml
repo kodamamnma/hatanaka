@@ -2,7 +2,7 @@ name: Deploy to Xserver
 
 on:
   push:
-    branches: [ main ] # メインブランチにプッシュされた時に実行
+    branches: [ develop ] # メインブランチにプッシュされた時に実行
   workflow_dispatch: # 手動実行も可能
 
 jobs:
