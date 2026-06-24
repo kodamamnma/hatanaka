@@ -54,10 +54,18 @@ get_header(); ?>
         </label>
       </div>
 
+      <?php if ( isset($_GET['error']) ) : ?>
+        <div class="form-msg error">内容を入力してから送信してください。</div>
+      <?php endif; ?>
+
       <div class="actions">
         <button type="submit" class="btn lg">声を届ける　→</button>
       </div>
     </form>
+
+    <?php if ( isset($_GET['sent']) ) : ?>
+      <div class="form-msg success">ありがとうございます。声を受け取りました。必ず読みます。</div>
+    <?php endif; ?>
 
     <aside class="submit-side">
       <h4>最近届いた声</h4>
@@ -77,10 +85,7 @@ get_header(); ?>
           <?php endwhile;
           wp_reset_postdata();
         else : ?>
-          <div class="voice">渋滞は本当に何とかしてほしい。子どもの送迎で詰む。<span class="who">— 30代 / 鹿児島市</span></div>
-          <div class="voice">給食の現場、もう限界。賃金を上げるしかない。<span class="who">— 40代 / 姶良市</span></div>
-          <div class="voice">街頭インタビュー、霧島でもやってほしい。<span class="who">— 20代 / 霧島</span></div>
-          <div class="voice">「能力＝金銭」、本当にその通り。建前で動いている人ほど、現場の話を聞いてほしい。<span class="who">— 40代 / 出水</span></div>
+          <p class="no-voices">まだ届いた声はありません。最初の一声を届けてください。</p>
         <?php endif; ?>
       </div>
 
