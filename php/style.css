@@ -495,6 +495,10 @@ section { padding: 48px 0; }
 .submit-side { display: flex; flex-direction: column; gap: 28px; }
 .submit-side h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--mute); margin: 0 0 12px; font-weight: 700; }
 .submit-side .recent { display: flex; flex-direction: column; gap: 12px; }
+.form-msg { padding: 14px 18px; font-size: 14px; font-weight: 700; border-radius: 2px; margin-top: 4px; }
+.form-msg.success { background: #e8f5ee; color: #1f7a4a; border-left: 4px solid #1f7a4a; }
+.form-msg.error   { background: var(--red-pale); color: var(--red-deep); border-left: 4px solid var(--red); }
+.no-voices { font-size: 13px; color: var(--mute); margin: 0; }
 .editor-note { background: var(--bg-2); border: 1px solid var(--line-2); padding: 16px 18px; }
 .editor-note .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: var(--red); font-weight: 700; margin-bottom: 6px; }
 .editor-note p { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.8; }
