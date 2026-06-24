@@ -10,6 +10,7 @@
         <li><a href="<?php echo esc_url( home_url('/articles/') ); ?>">記事一覧</a></li>
         <li><a href="<?php echo esc_url( home_url('/submit/') ); ?>">声を届ける</a></li>
         <li><a href="<?php echo esc_url( home_url('/#about') ); ?>">About</a></li>
+        <li><a href="<?php echo esc_url( home_url('/privacy/') ); ?>">プライバシーポリシー</a></li>
       </ul>
     </div>
   </div>
