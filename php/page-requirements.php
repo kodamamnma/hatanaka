@@ -1,0 +1,389 @@
+<?php
+/**
+ * Template Name: 要件定義書
+ */
+?><!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="<?php bloginfo('charset'); ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>要件定義書 v1 — 畠中さん ブログ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Old+Mincho:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf7;--paper:#fff;--bg-2:#f4eedf;--bg-3:#ebe3d0;
+    --ink:#14110d;--ink-2:#4a4038;--mute:#8a7f72;
+    --line:#e6dfd0;--line-2:#cbc1ad;
+    --red:#7a1018;--red-deep:#5a0a12;--red-pale:#f3dadd;
+    --blue:#2a5fd0;--blue-deep:#0f2d6b;
+    --mincho:'Zen Old Mincho',serif;
+    --gothic:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN',sans-serif;
+    --mono:'Space Mono',monospace;
+    --green:#1f7a4a;--amber:#a8730e;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--gothic);font-size:14.5px;line-height:1.85;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+  a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--red-pale);}
+  a:hover{background:var(--red-pale);}
+  .cover{background:var(--ink);color:#fff;padding:60px 0 50px;border-bottom:6px solid var(--red);}
+  .cover .stamp{display:inline-block;font-family:var(--mono);font-size:11px;color:#f3c0c4;border:1.5px solid #f3c0c4;padding:3px 10px;letter-spacing:.18em;font-weight:700;}
+  .cover h1{font-family:var(--mincho);font-weight:900;font-size:50px;margin:18px 0 8px;line-height:1.15;letter-spacing:-.005em;}
+  .cover h1 .accent{color:#f3c0c4;}
+  .cover .sub{font-family:var(--mincho);font-size:18px;color:#dcd6c8;margin:0 0 22px;}
+  .cover .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid #2c2620;padding-top:22px;margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;}
+  .cover .grid b{display:block;color:#f3c0c4;font-weight:700;margin-bottom:4px;letter-spacing:.18em;}
+  .cover .grid div span{color:#fff;font-family:var(--gothic);font-size:14px;letter-spacing:0;line-height:1.6;}
+  section.sec{padding:50px 0;border-bottom:1px solid var(--line);}
+  section.sec:last-of-type{border-bottom:none;}
+  .sec h2{font-family:var(--mincho);font-weight:900;font-size:30px;margin:0 0 6px;letter-spacing:-.005em;border-left:5px solid var(--red);padding-left:14px;}
+  .sec h2 .num{font-family:var(--mono);font-size:13px;color:var(--red);margin-right:14px;letter-spacing:.18em;vertical-align:5px;font-weight:700;}
+  .sec .lead{font-family:var(--mincho);font-size:15.5px;color:var(--ink-2);margin:0 0 26px;padding-left:19px;}
+  .sec h3{font-family:var(--mincho);font-weight:700;font-size:20px;margin:30px 0 10px;}
+  .sec h3 .stripe{display:inline-block;width:22px;height:4px;background:var(--red);margin-right:10px;vertical-align:5px;}
+  table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line-2);font-size:13.5px;margin:14px 0 8px;}
+  th,td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;line-height:1.7;}
+  th{background:var(--bg-2);font-weight:700;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-2);text-transform:uppercase;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  td.k{font-weight:700;width:200px;color:var(--ink);font-family:var(--gothic);}
+  td.k small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400;letter-spacing:.08em;margin-top:2px;}
+  td ul{margin:0;padding-left:1.1em;}
+  td ul li{margin-bottom:4px;}
+  .chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border:1px solid var(--line-2);padding:2px 9px;border-radius:99px;color:var(--ink-2);background:var(--paper);margin:0 4px 4px 0;}
+  .chip.red{color:var(--red);border-color:var(--red);}
+  .chip.red.solid{background:var(--red);color:#fff;}
+  .chip.green{color:var(--green);border-color:var(--green);}
+  .chip.amber{color:var(--amber);border-color:var(--amber);}
+  .chip.blue{color:var(--blue-deep);border-color:var(--blue);}
+  .chip.solid{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;padding:1px 8px;border-radius:2px;font-weight:700;}
+  .pill.must{background:var(--red);color:#fff;}
+  .pill.should{background:var(--amber);color:#fff;}
+  .pill.could{background:var(--ink-2);color:#fff;}
+  .pill.later{background:var(--bg-3);color:var(--ink-2);}
+  .call{background:var(--bg-2);border:1px solid var(--line-2);border-left:4px solid var(--red);padding:18px 22px;margin:18px 0;}
+  .call h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--red);margin:0 0 6px;font-weight:700;}
+  .call p{margin:0;font-size:14px;line-height:1.85;}
+  .call.blue{border-left-color:var(--blue);}
+  .call.blue h4{color:var(--blue-deep);}
+  .call.dark{background:var(--ink);color:#fff;border-color:var(--red);}
+  .call.dark p{color:#dcd6c8;}
+  .call.dark h4{color:#f3c0c4;}
+  .tree{font-family:var(--mono);font-size:13px;background:var(--ink);color:#dcd6c8;padding:22px 26px;border-radius:2px;line-height:1.85;overflow-x:auto;}
+  .tree .b{color:#fff;font-weight:700;}
+  .tree .r{color:#f3c0c4;}
+  .tree .m{color:#9d9486;}
+  .hearing{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .hearing .q{background:var(--paper);border:1px solid var(--line-2);padding:14px 16px;border-left:4px solid var(--blue);}
+  .hearing .q b{font-family:var(--mincho);font-weight:700;font-size:15px;display:block;margin-bottom:4px;}
+  .hearing .q small{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.08em;display:block;margin-bottom:6px;}
+  .hearing .q .ex{font-size:12.5px;color:var(--ink-2);line-height:1.7;}
+  @media(max-width:780px){.hearing{grid-template-columns:1fr;}.cover .grid{grid-template-columns:repeat(2,1fr);}.cover h1{font-size:34px;}}
+  .tl{display:grid;grid-template-columns:140px 1fr;gap:20px;border-top:1.5px solid var(--ink);padding-top:14px;margin-top:18px;}
+  .tl .when{font-family:var(--mincho);font-weight:900;font-size:22px;color:var(--red);line-height:1.2;}
+  .tl .when small{display:block;font-family:var(--mono);font-size:10px;color:var(--mute);font-weight:400;letter-spacing:.15em;margin-top:4px;}
+  .tl .what{padding:0 0 22px;border-bottom:1px dashed var(--line-2);}
+  .tl .what h4{font-family:var(--mincho);font-weight:700;font-size:17px;margin:0 0 6px;}
+  .tl .what p{margin:0 0 6px;font-size:13.5px;color:var(--ink-2);}
+  footer.foot{background:var(--ink);color:#9d9486;padding:30px 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;}
+  footer.foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+  footer.foot a{color:#f3c0c4;border:none;}
+  .toc{background:var(--bg-2);border:1px solid var(--line-2);padding:22px 26px;margin-top:30px;}
+  .toc h4{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--red);margin:0 0 10px;font-weight:700;}
+  .toc ol{columns:2;column-gap:30px;margin:0;padding-left:1.2em;font-family:var(--mincho);font-size:14.5px;}
+  .toc ol li{margin-bottom:5px;break-inside:avoid;}
+  .toc ol li a{color:var(--ink);border:none;}
+  .toc ol li a:hover{color:var(--red);background:none;}
+  .toc ol li small{font-family:var(--mono);font-size:10px;color:var(--mute);margin-left:6px;letter-spacing:.08em;}
+</style>
+<?php wp_head(); ?>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <span class="stamp">REQUIREMENTS · v1.0 — 2026.05.09</span>
+    <h1>鹿児島を、語ろう<span class="accent">。</span><br>サイト要件定義書</h1>
+    <p class="sub">畠中さま向け　オウンドメディア（ブログ＋意見投稿）　/　プロジェクト名：KATAROU</p>
+    <div class="grid">
+      <div><b>CLIENT</b><span>畠中さま<br>姶良市 / 病院・給食業務</span></div>
+      <div><b>OBJECTIVE</b><span>鹿児島県内の課題と楽しさを発掘・共有する場をつくる</span></div>
+      <div><b>TARGET</b><span>10〜40代の現役世代<br>（特に若者中心）</span></div>
+      <div><b>REFERENCE</b><span>sankoudesign.com<br>/category/platform-communitysite/</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="toc">
+    <h4>CONTENTS · 目次</h4>
+    <ol>
+      <li><a href="#s1">案件サマリー</a></li>
+      <li><a href="#s2">基本要件 / ビジョン</a></li>
+      <li><a href="#s3">ターゲットユーザー</a></li>
+      <li><a href="#s4">サイト全体方針</a></li>
+      <li><a href="#s5">サイトマップ・ページ構成</a></li>
+      <li><a href="#s6">機能要件</a></li>
+      <li><a href="#s7">非機能要件</a></li>
+      <li><a href="#s8">デザイン要件</a></li>
+      <li><a href="#s9">コンテンツ・運用要件</a></li>
+      <li><a href="#s10">KPI・成功指標</a></li>
+      <li><a href="#s11">未確定事項・ヒアリング項目</a></li>
+      <li><a href="#s12">スケジュール / 次のアクション</a></li>
+    </ol>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section class="sec" id="s1">
+  <h2><span class="num">01</span>案件サマリー</h2>
+  <p class="lead">鹿児島県内の課題や「楽しさ」を発掘し、住民・企業に届けるオウンドメディア。記事を読む場であると同時に、読者から意見を集めるコミュニティの入り口を兼ねる。</p>
+  <table>
+    <tr><td class="k">案件名<small>PROJECT</small></td><td>「鹿児島を、語ろう。」ブログ／コミュニティサイト制作（仮）</td></tr>
+    <tr><td class="k">クライアント<small>CLIENT</small></td><td>畠中さま（30代〜40代男性 / 鹿児島県姶良市）</td></tr>
+    <tr><td class="k">クライアント特性<small>PERSONA</small></td><td>東京で飲食業12年 → コロナ禍で帰郷 → 病院・給食委託会社勤務。マンチェスター・ユナイテッド／ブルーノ・フェルナンデスを愛好する「熱い人」。</td></tr>
+    <tr><td class="k">案件概要<small>OVERVIEW</small></td><td>鹿児島県内の課題や楽しさを発掘するサイト。10〜40代の現役世代がターゲット。<br>※ ブログ／コミュニティのどちらをコアに置くかは後述の通り <b>ブログを母体に、SNS／LINE等への動線を持つ構造</b> として整理。</td></tr>
+    <tr><td class="k">参考サイト<small>REFERENCE</small></td><td>sankoudesign.com /category/platform-communitysite/<br>（コミュニティ／プラットフォーム系のレイアウトカテゴリ）</td></tr>
+    <tr><td class="k">納品方法<small>DELIVERY</small></td><td><span class="pill later">未確定</span> ヒアリング要：レンタルサーバー納品 / WordPress / Wix / 自前ホスティング 等</td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s2">
+  <h2><span class="num">02</span>基本要件 / ビジョン</h2>
+  <p class="lead">畠中さまは「意見を集める器」と「情報を発信する場」の両方を求めている。要件定義としては<b>ブログを母体（資産）に、コミュニティ（双方向）を機能として乗せる</b>形で進める。</p>
+  <table>
+    <tr><td class="k">訴求目的・方針</td><td>鹿児島に住む人に、県内が抱える課題を共有してもらう。コミュニティ的に意見を集めて記事に還元する。</td></tr>
+    <tr><td class="k">短期ゴール（〜6ヶ月）</td><td><ul><li>鹿児島県内の課題を「読み物」として知ってもらう</li><li>月50件の意見投稿を獲得</li><li>第1回タウンミーティングへの集客動線にする</li></ul></td></tr>
+    <tr><td class="k">中期ゴール（6〜18ヶ月）</td><td><ul><li>企業・行政関係者にも「現場の声が集まる場」として認知される</li><li>街頭インタビュー・対話イベント・哲学会の告知＆アーカイブ</li><li>SNS（インスタ／X／スレッズ）／LINE への流入導線</li></ul></td></tr>
+    <tr><td class="k">編集方針</td><td>「足を運んで自分で見る」一次情報主義。当事者の言葉をそのまま載せる骨太なトーン。</td></tr>
+  </table>
+  <div class="call">
+    <h4>EDITORIAL POSITION · 編集の旗</h4>
+    <p>「鹿児島を、当事者の言葉で語る場所」。畠中さまの<b>熱量</b>と<b>現場感</b>を、サイトの体温として全ページに通す。</p>
+  </div>
+</section>
+
+<section class="sec" id="s3">
+  <h2><span class="num">03</span>ターゲットユーザー</h2>
+  <p class="lead">スプレッドシート上のチェックを基に、メインとサブを整理。</p>
+  <table>
+    <tr><th>区分</th><th>セグメント</th><th>ニーズ・読む理由</th></tr>
+    <tr><td><span class="chip red solid">PRIMARY</span></td><td>一般利用者（10〜40代の現役世代、特に若者）</td><td>地域課題に関心。共感／違和感を表明したい。イベントに参加したい。</td></tr>
+    <tr><td><span class="chip red solid">PRIMARY</span></td><td>取引先企業（地元企業・委託先）</td><td>現場の声を経営判断・採用・PR の素材として参照したい。</td></tr>
+    <tr><td><span class="chip red solid">PRIMARY</span></td><td>報道関係者（地元紙・地方局）</td><td>取材ネタ／一次情報の入口。畠中さまへの登壇・コメント依頼。</td></tr>
+    <tr><td><span class="chip">SECONDARY</span></td><td>当事者（介護現場・給食業務・技能実習生）</td><td>自分の現場が記事になる。意見を匿名で残せる。</td></tr>
+    <tr><td><span class="chip">SECONDARY</span></td><td>移住希望者・帰郷検討者</td><td>鹿児島のリアルを知りたい。</td></tr>
+    <tr><td><span class="chip" style="opacity:.5">OUT OF SCOPE</span></td><td>株主投資家／就職希望者／自社社員</td><td>本サイトでは扱わない（チェックなし）。</td></tr>
+  </table>
+  <h3><span class="stripe"></span>ペルソナ抜粋</h3>
+  <table>
+    <tr><th>属性</th><th>ペルソナA「現場で働く30代」</th><th>ペルソナB「移住検討の20代」</th></tr>
+    <tr><td class="k">職業</td><td>介護施設の調理職／姶良市</td><td>東京勤務、鹿児島出身／IT</td></tr>
+    <tr><td class="k">サイトに来る経路</td><td>畠中さまのSNS、LINEの紹介</td><td>X／インスタの記事拡散</td></tr>
+    <tr><td class="k">行動</td><td>記事を読む → 共感して匿名投稿 → タウンミーティングに参加</td><td>記事を読む → ブックマーク → 帰郷時に投稿</td></tr>
+    <tr><td class="k">求める価値</td><td>「自分の現場が言葉になっている」感覚</td><td>東京メディアにない、当事者の声</td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s4">
+  <h2><span class="num">04</span>サイト全体方針</h2>
+  <p class="lead">基本コンセプト・現状サイトの課題（＝今ヒアリングで詰めるべき論点）に対する、いったんの仮置き案。</p>
+  <table>
+    <tr><th>論点（クライアント側の悩み）</th><th>仮置きの方針</th><th>確認事項</th></tr>
+    <tr><td>ブログは何のために書きたいか<br><span class="chip">情報発信？集客？参政党活動の記録？</span></td><td><b>「鹿児島の現場の声を集約・発信する」</b>を主軸に。政治活動の記録は、明示的にはサイト本体には載せない方針（信頼の母体を守るため）。別ドメイン or 別カテゴリで仕分けるのが安全。</td><td><span class="pill should">確認</span> 政治活動とブログの関係性をどう扱うか</td></tr>
+    <tr><td>読んでほしいのは誰か<br><span class="chip">支持者？一般の人？</span></td><td>第一読者は<b>「現場で課題を抱えている／鹿児島で生きている一般の人」</b>。支持者向け発信はSNSやLINEに役割を分担。</td><td><span class="pill should">確認</span> 「支持者」を想定読者に含めるか</td></tr>
+    <tr><td>自分で書く / 書いてほしい</td><td>初期は<b>畠中さま自身が編集長として顔を出して書く</b>。並行してインタビュー型記事を「ライター」が書き起こす運用も準備。</td><td><span class="pill must">必須</span> 月の本数・編集サポートの体制</td></tr>
+    <tr><td>更新頻度</td><td>仮：<b>週1〜2本</b>（特集 月1 + 投稿まとめ 月1 + 短信 週1）</td><td><span class="pill must">必須</span> 現実的にコミットできるペース</td></tr>
+    <tr><td>既存のSNS／note発信</td><td>未確認。インスタ／スレッズで「政治課題を持つ人」とつながりたい意向あり → サイトはハブとして機能。</td><td><span class="pill must">必須</span> 現在の発信チャネルと、運用権限</td></tr>
+    <tr><td>サイト or LINE / Slack コミュニティ</td><td><b>サイトを資産（記事）の置き場</b>とし、LINE 公式アカウント／Slack 招待リンクへ誘導する二段構造。<br>※「コミュニティの本体」を畠中さまが持続運営できるかは要確認。</td><td><span class="pill must">必須</span> 双方向の場をどこに置くか</td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s5">
+  <h2><span class="num">05</span>サイトマップ・ページ構成</h2>
+  <p class="lead">v0.1 のプロトタイプ4ページを起点に、Phase 1（ローンチ時）／Phase 2（拡張）に分けて整理。</p>
+  <div class="tree">
+<span class="b">/  鹿児島を、語ろう。</span>
+├─ <span class="b">index（トップ）</span>　……　<span class="r">トップ（新着・特集・テーマ・声）</span>　<span class="m"># Phase 1 · 実装済</span>
+├─ <span class="b">articles（記事一覧）</span>　……　<span class="r">記事一覧（カテゴリ／検索）</span>　<span class="m"># Phase 1 · 実装済</span>
+├─ <span class="b">投稿（個別記事）</span>　……　<span class="r">個別記事（本文・関連・声）</span>　<span class="m"># Phase 1 · 実装済</span>
+├─ <span class="b">submit（声を届ける）</span>　……　<span class="r">声を届ける（投稿フォーム）</span>　<span class="m"># Phase 1 · 実装済</span>
+├─ /category/
+│   ├─ machi-kurashi　……　街と暮らし
+│   ├─ shoku-shigoto　……　食・仕事
+│   ├─ taiwa　……　対話／インタビュー
+│   ├─ gaitou　……　街頭ルポ
+│   └─ ronkou　……　論考
+├─ /event/　……　タウンミーティング・対話会の告知＆アーカイブ　<span class="m"># Phase 2</span>
+├─ /voices/　……　投稿一覧（モデレート済）　<span class="m"># Phase 2</span>
+├─ /about/　……　編集長プロフィール／メディアの理念　<span class="m"># Phase 1</span>
+├─ /contact/　……　取材・登壇依頼／取引先窓口　<span class="m"># Phase 1</span>
+├─ /privacy/, /terms/　……　プライバシー／規約　<span class="m"># Phase 1</span>
+└─ /search/　……　全文検索結果　<span class="m"># Phase 2</span>
+  </div>
+  <h3><span class="stripe"></span>各ページの目的と必須要素</h3>
+  <table>
+    <tr><th style="width:140px;">ページ</th><th>目的</th><th>必須要素</th><th>Phase</th></tr>
+    <tr><td class="k">トップ</td><td>新着・特集・コミュニティへの招待</td><td>ヒーロー特集 / 新着4-8件 / テーマ別 / 読者の声 / 編集長カード</td><td><span class="pill must">P1</span></td></tr>
+    <tr><td class="k">記事一覧</td><td>カテゴリ別の回遊</td><td>フィルタチップ / カード一覧 / ページネーション / 反響順ソート</td><td><span class="pill must">P1</span></td></tr>
+    <tr><td class="k">個別記事</td><td>読み物として最後まで読ませる</td><td>本文 / 関連3件 / 共有 / 投稿CTA / コメント (≒声)</td><td><span class="pill must">P1</span></td></tr>
+    <tr><td class="k">投稿フォーム</td><td>意見の収集（KPI 50件/月）</td><td>テーマ選択 / 本文 / 年代・地域 / 匿名OK / 同意文 / 確認画面</td><td><span class="pill must">P1</span></td></tr>
+    <tr><td class="k">About</td><td>編集長と媒体への信頼形成</td><td>畠中さま自己紹介 / 編集方針 / 連絡先</td><td><span class="pill must">P1</span></td></tr>
+    <tr><td class="k">イベント</td><td>タウンミーティング集客・記録</td><td>次回告知 / 過去のレポ / 申込フォーム</td><td><span class="pill should">P2</span></td></tr>
+    <tr><td class="k">声一覧</td><td>投稿の透明化と再利用</td><td>テーマ別フィード / 月次ダイジェスト</td><td><span class="pill should">P2</span></td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s6">
+  <h2><span class="num">06</span>機能要件</h2>
+  <p class="lead">MoSCoW 法で優先度を整理。<span class="pill must">MUST</span> をローンチ時のスコープに。</p>
+  <table>
+    <tr><th style="width:90px;">優先度</th><th>機能</th><th>仕様メモ</th></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>記事の作成・公開（CMS）</td><td>畠中さま単独で更新可能。タイトル／本文／カテゴリ／タグ／アイキャッチ画像／公開日。下書き保存。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>カテゴリ・タグ管理</td><td>5カテゴリ（街と暮らし／食・仕事／対話／街頭ルポ／論考）+ 自由タグ。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>意見投稿フォーム</td><td>テーマ選択／本文／年代／地域／ニックネーム／掲載同意。スパム対策（reCAPTCHA / Turnstile）。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>投稿のモデレーション</td><td>管理画面で承認 → 公開。NGワード検知。畠中さまへ通知（メール／LINE）。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>SNS共有</td><td>X／Facebook／LINE／URLコピー。OGP対応。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>レスポンシブ対応</td><td>スマホ優先（10〜40代の主流）。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>SEO基本対応</td><td>タイトル・descはCMSで編集可。サイトマップ.xml。構造化データ（Article）。</td></tr>
+    <tr><td><span class="pill must">MUST</span></td><td>アクセス解析</td><td>GA4 + Search Console。</td></tr>
+    <tr><td><span class="pill should">SHOULD</span></td><td>記事内のコメント機能（≒声）</td><td>記事に対して声を寄せる。匿名OK。承認制。</td></tr>
+    <tr><td><span class="pill should">SHOULD</span></td><td>メールマガジン</td><td>月2回。新着＋次回タウンミーティング告知。</td></tr>
+    <tr><td><span class="pill should">SHOULD</span></td><td>イベント申込フォーム</td><td>定員・締切・自動返信。</td></tr>
+    <tr><td><span class="pill should">SHOULD</span></td><td>LINE 公式 / Slack 連携</td><td>投稿された声をBotで通知 → 畠中さまが拾う。</td></tr>
+    <tr><td><span class="pill could">COULD</span></td><td>全文検索</td><td>件数が増えてから（〜30本以降）。</td></tr>
+    <tr><td><span class="pill could">COULD</span></td><td>ユーザーアカウント</td><td>「お気に入り記事」「投稿履歴」。Phase 2 以降。</td></tr>
+    <tr><td><span class="pill later">LATER</span></td><td>動画・ポッドキャスト埋め込み</td><td>街頭インタビューの動画化を見据えて。Phase 3。</td></tr>
+    <tr><td><span class="pill later">LATER</span></td><td>多言語</td><td>技能実習生向けに将来的に。</td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s7">
+  <h2><span class="num">07</span>非機能要件</h2>
+  <table>
+    <tr><td class="k">対応ブラウザ</td><td>Chrome / Safari / Edge / Firefox 最新版＋1世代前。iOS Safari, Android Chrome 最新。</td></tr>
+    <tr><td class="k">表示性能</td><td>LCP &lt; 2.5s / CLS &lt; 0.1（Core Web Vitals「良好」）。記事ページは画像のlazy load・WebP化。</td></tr>
+    <tr><td class="k">アクセシビリティ</td><td>WCAG 2.1 AA を目標。コントラスト比、キーボード操作、alt属性。</td></tr>
+    <tr><td class="k">セキュリティ</td><td>HTTPS常時、管理画面はIP制限 or 2要素。フォームはCSRF・スパム対策必須。</td></tr>
+    <tr><td class="k">バックアップ</td><td>日次自動。直近30日分保管。</td></tr>
+    <tr><td class="k">運用保守</td><td>初年度：月次保守契約（更新・トラブル対応）。<span class="pill must">確認</span></td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s8">
+  <h2><span class="num">08</span>デザイン要件</h2>
+  <table>
+    <tr><td class="k">トーン</td><td>情熱的・骨太・編集（マンU 的に「旗を立てる」）。マガジン型のレイアウト。</td></tr>
+    <tr><td class="k">メインカラー</td><td><span class="chip red solid">#7a1018</span> 暗赤（情熱の赤）</td></tr>
+    <tr><td class="k">サブカラー</td><td><span class="chip" style="background:#fafaf7;">#fafaf7</span> オフホワイト・<span class="chip solid">#14110d</span> インクブラック</td></tr>
+    <tr><td class="k">アクセント</td><td><span class="chip blue">#2a5fd0 / #0f2d6b</span> ブルー（フェルナンデス）</td></tr>
+    <tr><td class="k">タイポ</td><td>見出：Zen Old Mincho 700/900　/　本文：Zen Kaku Gothic New 400/500/700　/　メタ：Space Mono</td></tr>
+    <tr><td class="k">写真</td><td>大判（マガジン型）。畠中さま撮影の鹿児島写真を優先。プレースホルダ運用も準備。</td></tr>
+    <tr><td class="k">参考</td><td>sankoudesign カテゴリ／既存プロト 4 案中の <b>B案グリッド・新聞</b> を採用</td></tr>
+  </table>
+</section>
+
+<section class="sec" id="s9">
+  <h2><span class="num">09</span>コンテンツ・運用要件</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th><th>担当</th></tr>
+    <tr><td>ローンチ時の記事本数</td><td>仮：8〜12本（特集2 + 通常8 + 街頭1 + 編集長挨拶1）</td><td>畠中さま + 構成支援</td></tr>
+    <tr><td>更新頻度</td><td>仮：週1〜2本</td><td>畠中さま</td></tr>
+    <tr><td>意見投稿の運用</td><td>毎日確認 → 1営業日以内に承認／返信。月1で「読者の声まとめ」記事化</td><td>畠中さま</td></tr>
+    <tr><td>SNS連携</td><td>記事公開時にX／インスタ自動投稿（or 手動）</td><td>畠中さま</td></tr>
+    <tr><td>イベント運営</td><td>月1〜隔月でタウンミーティング。会場手配・受付・記録</td><td>畠中さま + サポート</td></tr>
+  </table>
+  <div class="call blue">
+    <h4>SUSTAINABILITY · 続けられる運用へ</h4>
+    <p>「足を運んで自分で見る」哲学を保ちつつ、畠中さま一人に運用負担が偏らないよう、<b>記事化テンプレート</b>と<b>下書き起こしの簡易サポート</b>を用意することを推奨。週1更新を3ヶ月続ける／月50投稿に届くタイミングで、ライターの兼任を再検討。</p>
+  </div>
+</section>
+
+<section class="sec" id="s10">
+  <h2><span class="num">10</span>KPI・成功指標</h2>
+  <table>
+    <tr><th>指標</th><th>3ヶ月後</th><th>6ヶ月後</th><th>12ヶ月後</th></tr>
+    <tr><td class="k">月間 PV</td><td>2,000</td><td>5,000</td><td>15,000</td></tr>
+    <tr><td class="k">月間 UU</td><td>1,000</td><td>2,500</td><td>7,000</td></tr>
+    <tr><td class="k">意見投稿数 / 月</td><td>10</td><td><b style="color:var(--red)">50（目標値）</b></td><td>80〜100</td></tr>
+    <tr><td class="k">公開記事数 / 月</td><td>4</td><td>6</td><td>8</td></tr>
+    <tr><td class="k">タウンミーティング参加</td><td>1回 / 30名</td><td>2回 / 60名</td><td>4回 / 200名累計</td></tr>
+    <tr><td class="k">企業・取材問い合わせ</td><td>1件</td><td>3件</td><td>10件累計</td></tr>
+  </table>
+  <div class="call dark">
+    <h4>NORTH STAR · 北極星指標</h4>
+    <p><b>月50件の意見投稿</b> — クライアント自身がクリアに語った唯一の数字。すべての設計判断は、これに紐づく。</p>
+  </div>
+</section>
+
+<section class="sec" id="s11">
+  <h2><span class="num">11</span>未確定事項・ヒアリング項目</h2>
+  <p class="lead">次回（池田さま同席）ヒアリングで詰めたい論点。優先度順。</p>
+  <div class="hearing">
+    <div class="q"><small>Q1 · 媒体の役割</small><b>政治活動の記録は、本サイトに含めるか？</b><span class="ex">含める／含めない／別ドメインで切り分ける、で運用と信頼設計が大きく変わる。</span></div>
+    <div class="q"><small>Q2 · 第一読者</small><b>支持者と一般読者、優先したいのはどちら？</b><span class="ex">トップに置く特集・トーンが変わる。</span></div>
+    <div class="q"><small>Q3 · 運用体制</small><b>記事は畠中さま単独で書く？取材は同行者が必要か？</b><span class="ex">編集サポートの規模感を決める。</span></div>
+    <div class="q"><small>Q4 · 更新頻度</small><b>無理なく続けられるペースは？</b><span class="ex">週1か隔週か。長期の継続性を最優先で決める。</span></div>
+    <div class="q"><small>Q5 · チャネル</small><b>現在の発信媒体は？（X／インスタ／スレッズ／note 等）</b><span class="ex">サイトとSNSの役割分担、流入導線設計の前提。</span></div>
+    <div class="q"><small>Q6 · コミュニティの場</small><b>双方向の場はどこに置く？（LINE 公式 / Slack / Discord / なし）</b><span class="ex">「投稿フォームのみ」か「常設コミュニティ」かで機能要件が変わる。</span></div>
+    <div class="q"><small>Q7 · 命名</small><b>サイト名・ロゴは決めたい？</b><span class="ex">仮称「鹿児島を、語ろう。」を採用するか別案を出すか。</span></div>
+    <div class="q"><small>Q8 · 公開時期</small><b>いつ公開したいか？イベントとの連動は？</b><span class="ex">第1回タウンミーティングに合わせるなら締切が決まる。</span></div>
+    <div class="q"><small>Q9 · 予算・納品</small><b>制作・運用の予算感／納品形式は？</b><span class="ex">WordPress / 静的サイト / Notion / Wix で工数が大きく変わる。</span></div>
+    <div class="q"><small>Q10 · 写真素材</small><b>撮影は畠中さま自身？フォトグラファー手配は必要？</b><span class="ex">マガジン型に必要な写真の質と量。</span></div>
+    <div class="q"><small>Q11 · 取材ターゲット</small><b>初回特集に登場してほしい当事者は誰か？</b><span class="ex">介護現場／給食／天文館／渋滞 — 順序づけ。</span></div>
+    <div class="q"><small>Q12 · 法務</small><b>取材した発言の掲載許諾／個人情報の扱い</b><span class="ex">投稿の二次利用範囲。記事内に同意文の必要可否。</span></div>
+    <div class="q"><small>Q13 · 言葉づかい</small><b>NGワード／ハンドリング基準</b><span class="ex">攻撃的・差別的な投稿への対応ルール。</span></div>
+    <div class="q"><small>Q14 · ブランド資産</small><b>畠中さまのお気に入りHP（事前依頼分）の確認</b><span class="ex">参照例から「好きな粒度」を抽出する。</span></div>
+  </div>
+</section>
+
+<section class="sec" id="s12">
+  <h2><span class="num">12</span>スケジュール / 次のアクション</h2>
+  <p class="lead">仮置きのマイルストーン。Q9（予算）が決まり次第、本スケジュールに格上げ。</p>
+  <div class="tl">
+    <div class="when">5月中旬<small>WEEK 20</small></div>
+    <div class="what"><h4>本要件定義書のレビュー／池田さま同席ヒアリング</h4><p>本書を畠中さまへ送付 → 池田さま同席で第2回ヒアリング → Q1〜Q14 を順に潰す。畠中さまから好きなHPの参照を回収。</p></div>
+  </div>
+  <div class="tl">
+    <div class="when">5月末<small>WEEK 22</small></div>
+    <div class="what"><h4>要件定義 v2 確定／見積</h4><p>サイトマップ・機能スコープ・更新フロー・予算をフィックス。CMS方式の確定。</p></div>
+  </div>
+  <div class="tl">
+    <div class="when">6月<small>WEEK 23-26</small></div>
+    <div class="what"><h4>デザインカンプ → 実装</h4><p>B案ベースを忠実度UP → コーディング。畠中さま自身の写真・原稿を並行収集。</p></div>
+  </div>
+  <div class="tl">
+    <div class="when">7月中旬<small>WEEK 28</small></div>
+    <div class="what"><h4>第1回タウンミーティング連動公開</h4><p>記事8〜12本を初期搭載した状態でローンチ。SNS連携・LINE 公式立ち上げ。</p></div>
+  </div>
+  <div class="tl">
+    <div class="when">継続<small>MONTHLY</small></div>
+    <div class="what"><h4>月次レビュー</h4><p>KPI（投稿数／PV／問い合わせ）／編集会議／次月特集の決定。</p></div>
+  </div>
+  <h3 style="margin-top:40px;"><span class="stripe"></span>営業上のNext Action（社内）</h3>
+  <table>
+    <tr><th style="width:90px;">優先</th><th>アクション</th><th>担当</th></tr>
+    <tr><td><span class="pill must">P1</span></td><td>本要件定義書を畠中さまに送付（読了感の確認）</td><td>自分</td></tr>
+    <tr><td><span class="pill must">P1</span></td><td>畠中さまから「好きなHPの参考リンク」を回収</td><td>自分</td></tr>
+    <tr><td><span class="pill must">P1</span></td><td>池田さま同席ヒアリングのアポ調整</td><td>自分</td></tr>
+    <tr><td><span class="pill should">P2</span></td><td>池田さま・かじはらさまへの紹介ストーリーを準備</td><td>自分</td></tr>
+    <tr><td><span class="pill should">P2</span></td><td>WordPress / 静的 / Notion 等、CMS方式比較資料</td><td>自分</td></tr>
+  </table>
+</section>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>REQUIREMENTS · v1.0 — 鹿児島を、語ろう。 / KATAROU</div>
+    <div>2026.05.09 issued · <a href="<?php echo esc_url( home_url('/') ); ?>">プロト v0.1 を見る →</a></div>
+  </div>
+</footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>

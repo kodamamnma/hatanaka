@@ -1,0 +1,45 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [ develop ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: PHP Syntax Check
+      uses: ./.github/actions/php-syntax-check
+  
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.STAGING_SERVER_HOST }}
+        username: ${{ secrets.STAGING_SERVER_USER }}
+        password: ${{ secrets.STAGING_SERVER_PASSWORD }}
+        protocol: ftps
+        port: 21
+        local-dir: ./kawabata-wp-theme/
+        server-dir: ${{ secrets.STAGING_THEME_PATH }}/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/README.md
+          **/.github/**
+
+    - name: Verify deployment
+      run: |
+        echo "✅ Deployment completed successfully"
+        echo "Files deployed to: ${{ secrets.STAGING_THEME_PATH }}"
