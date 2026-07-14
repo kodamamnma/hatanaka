@@ -71,14 +71,38 @@
   footer.foot .wrap-full{max-width:1080px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;}
   footer.foot a{color:#f3c0c4;border:none;}
 
+  /* サイト共通ヘッダー */
+  .siteh{background:var(--ink);color:#fff;padding:0;}
+  .siteh .wrap-full{max-width:1080px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .siteh .brand{font-family:var(--mincho);font-weight:700;font-size:17px;color:#fff;letter-spacing:.02em;display:flex;align-items:baseline;gap:6px;text-decoration:none;border:none;}
+  .siteh .brand small{font-family:var(--mono);font-size:10px;color:#9d9486;letter-spacing:.18em;font-weight:400;}
+  .siteh .brand .dot{color:var(--red);}
+  .siteh .nav{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .siteh .nav a{font-size:13px;color:#ccc;letter-spacing:.06em;text-decoration:none;border:none;}
+  .siteh .nav a:hover,.siteh .nav a[aria-current="page"]{color:#fff;background:none;}
+
   @media(max-width:600px){
     .cover h1{font-size:30px;}
     .wrap{padding:0 20px;}
+    .siteh .nav{gap:16px;}
+    .siteh .nav li:nth-child(4){display:none;}
   }
 </style>
 <?php wp_head(); ?>
 </head>
 <body>
+
+<header class="siteh">
+  <div class="wrap-full">
+    <a class="brand" href="<?php echo esc_url( home_url('/') ); ?>">鹿児島を、語ろう<span class="dot">。</span><small>KAGOSHIMA · KATAROU</small></a>
+    <ul class="nav">
+      <li><a href="<?php echo esc_url( home_url('/') ); ?>">HOME</a></li>
+      <li><a href="<?php echo esc_url( home_url('/articles/') ); ?>">記事</a></li>
+      <li><a href="<?php echo esc_url( home_url('/submit/') ); ?>">声を届ける</a></li>
+      <li><a href="<?php echo esc_url( home_url('/about/') ); ?>">About</a></li>
+    </ul>
+  </div>
+</header>
 
 <header class="cover">
   <div class="wrap">
