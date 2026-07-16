@@ -95,10 +95,7 @@ get_header(); ?>
         <?php endwhile;
         wp_reset_postdata();
       else : ?>
-        <div class="voice">渋滞は本当に何とかしてほしい。子どもの送迎で詰む。<span class="who">— 30代 / 鹿児島市</span></div>
-        <div class="voice">給食の現場、もう限界。賃金を上げるしかない。<span class="who">— 40代 / 姶良市</span></div>
-        <div class="voice">街頭インタビュー、霧島でもやってほしい。<span class="who">— 20代 / 霧島</span></div>
-        <div class="voice">「能力＝金銭」、本当にその通り。建前で動いている人ほど、現場の話を聞いてほしい。<span class="who">— 40代 / 出水</span></div>
+        <p class="wall-empty">あなたの声をお待ちしています。</p>
       <?php endif; ?>
     </div>
     <p class="wall-note">届いた声は、許可をいただいた範囲で記事の素材にします。名前が出ない形でも構いません。</p>

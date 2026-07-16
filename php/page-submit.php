@@ -85,7 +85,7 @@ get_header(); ?>
           <?php endwhile;
           wp_reset_postdata();
         else : ?>
-          <p class="no-voices">まだ届いた声はありません。最初の一声を届けてください。</p>
+          <p class="no-voices">あなたの声をお待ちしています。</p>
         <?php endif; ?>
       </div>
 
