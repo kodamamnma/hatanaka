@@ -28,7 +28,7 @@ get_header(); ?>
       <a href="<?php the_permalink(); ?>">
         <figure class="media hero-img">
           <?php if ( has_post_thumbnail() ) : ?>
-            <?php the_post_thumbnail('large', ['width' => '1200', 'height' => '675', 'loading' => 'eager', 'decoding' => 'async']); ?>
+            <?php the_post_thumbnail('large', ['width' => '1200', 'height' => '675', 'loading' => 'eager', 'decoding' => 'async', 'alt' => get_the_title()]); ?>
           <?php else : ?>
             <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/articles/2026-03-30-aira-station/lead.jpg" alt="姶良駅前の風景" width="1200" height="675" loading="eager" decoding="async">
           <?php endif; ?>
@@ -63,9 +63,9 @@ get_header(); ?>
         <a href="<?php the_permalink(); ?>"><article class="card">
           <div class="media media-card">
             <?php if ( has_post_thumbnail() ) : ?>
-              <?php the_post_thumbnail('medium', ['width' => '800', 'height' => '600', 'loading' => 'lazy', 'decoding' => 'async']); ?>
+              <?php the_post_thumbnail('medium', ['width' => '800', 'height' => '600', 'loading' => 'lazy', 'decoding' => 'async', 'alt' => get_the_title()]); ?>
             <?php else : ?>
-              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/no-image.jpg" alt="" width="800" height="600" loading="lazy" decoding="async">
+              <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/no-image.jpg" alt="<?php the_title_attribute(); ?>" width="800" height="600" loading="lazy" decoding="async">
             <?php endif; ?>
           </div>
           <div class="meta"><span><?php echo esc_html( get_the_date('Y.m.d') ); ?></span></div>

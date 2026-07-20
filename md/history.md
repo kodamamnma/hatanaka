@@ -1,5 +1,33 @@
 # 変更履歴
 
+## 2026-07-20 — SEO基本対策（meta description・OGP・構造化データ・画像alt）の実装
+
+### 背景
+サイトのSEO状況をレビューしたところ、`<meta name="description">` が全ページで欠落しており、OGP/Twitter Cardタグや構造化データ（JSON-LD）も未実装だったため、検索結果のスニペットやSNSシェア時のプレビューが正しく機能しない状態だった。また記事カード・関連記事のサムネイル画像に `alt=""` が設定されており、画像検索経由の流入を取りこぼしていた。
+
+### 変更内容
+
+| ファイル | 変更内容 |
+|---|---|
+| `php/functions.php` | `katarou_meta_description()`（メタディスクリプション生成）、`katarou_og_title()`、`katarou_og_image()`、`katarou_current_url()` のSEOヘルパー関数を追加 |
+| `php/header.php` | `<meta name="description">`、`<link rel="canonical">`、OGPタグ（og:type/site_name/title/description/url/image、記事ページのみ article:published_time・article:modified_time）、Twitter Cardタグを追加。JSON-LD構造化データ（サイト全体の `WebSite`、記事ページの `Article`・`BreadcrumbList`）を `<script type="application/ld+json">` で出力 |
+| `php/page-top.php` | ヒーロー記事・最近の記事カードのサムネイル画像に `alt`（記事タイトル）を追加 |
+| `php/page-articles.php` | 記事一覧のサムネイル画像に `alt`（記事タイトル）を追加 |
+| `php/single.php` | 記事本文のアイキャッチ画像・関連記事カードのサムネイル画像に `alt`（記事タイトル）を追加 |
+
+### 効果
+- 検索結果のスニペットがGoogle任せの自動生成ではなく、記事の抜粋文で表示されるようになる
+- X（Twitter）・LINE・Facebookでのシェア時に、タイトル・説明文・アイキャッチ画像を含むカードが正しく表示される
+- 記事ページの著者・公開日・パンくずがリッチリザルトの対象になり得る
+- 画像検索経由の流入導線が改善
+
+### 今後の検討事項（未対応）
+- SEOプラグイン（Rank Math等）導入によるXMLサイトマップ・タイトル/description管理のGUI化
+- カテゴリ（エリア別・テーマ別）を軸にしたトピッククラスター構築
+- robots.txt / XMLサイトマップの本番環境での存在確認
+
+---
+
 ## 2026-07-16 — 「届いた声」デモデータの完全削除・空状態メッセージ統一、最近の記事カードの余白追加
 
 ### 背景

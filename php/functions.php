@@ -57,3 +57,33 @@ add_action('init', function () {
         'menu_icon'     => 'dashicons-format-quote',
     ]);
 });
+
+// SEO: meta description
+function katarou_meta_description() {
+    if ( is_singular() ) {
+        $excerpt = get_the_excerpt();
+        if ( $excerpt ) {
+            return wp_strip_all_tags( $excerpt );
+        }
+    }
+    $tagline = get_bloginfo('description');
+    return $tagline ?: '鹿児島に住む人の声を集め、そのまま記事にしていくメディア「鹿児島を、語ろう。」です。';
+}
+
+// SEO: OGP用タイトル
+function katarou_og_title() {
+    return is_singular() ? get_the_title() : get_bloginfo('name');
+}
+
+// SEO: OGP/カード用の画像URL
+function katarou_og_image() {
+    if ( is_singular() && has_post_thumbnail() ) {
+        return get_the_post_thumbnail_url( get_the_ID(), 'large' );
+    }
+    return get_template_directory_uri() . '/images/no-image.jpg';
+}
+
+// SEO: 現在URL（正規化用）
+function katarou_current_url() {
+    return is_singular() ? get_permalink() : home_url( add_query_arg( null, null ) );
+}
