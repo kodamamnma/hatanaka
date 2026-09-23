@@ -14,6 +14,8 @@ get_header(); ?>
 
 <main class="wrap">
   <div class="submit-grid">
+    <!-- ▼ 投稿エリア（voice-chat.js がこの中にチャットを差し込むため、左カラムを1つの要素にまとめる） -->
+    <div class="submit-main">
     <form class="submit-form" method="post" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>">
       <?php wp_nonce_field('submit_voice', 'voice_nonce'); ?>
       <input type="hidden" name="action" value="submit_voice">
@@ -66,6 +68,7 @@ get_header(); ?>
     <?php if ( isset($_GET['sent']) ) : ?>
       <div class="form-msg success">ありがとうございます。声を受け取りました。必ず読みます。</div>
     <?php endif; ?>
+    </div>
 
     <aside class="submit-side">
       <h4>最近届いた声</h4>

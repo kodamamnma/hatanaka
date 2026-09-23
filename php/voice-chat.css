@@ -1,0 +1,203 @@
+/* voice-chat.css — 「鹿児島を、語ろう。」声を届けるチャット
+   テーマの style.css のデザイントークン（--red, --ink など）をそのまま使う */
+
+.vc {
+  --vc-red: var(--red);
+  --vc-red-deep: var(--red-deep);
+  --vc-red-pale: var(--red-pale);
+  --vc-ink: var(--ink);
+  --vc-ink-2: var(--ink-2);
+  --vc-mute: var(--mute);
+  --vc-line: var(--line);
+  --vc-line-2: var(--line-2);
+  --vc-paper: var(--paper);
+  --vc-bg-2: var(--bg-2);
+
+  background: var(--vc-paper);
+  border: 1px solid var(--vc-line-2);
+  border-top: 4px solid var(--vc-ink);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--gothic);
+  color: var(--vc-ink);
+  min-width: 0;
+}
+
+.vc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--vc-line);
+}
+.vc-head-l { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.vc-stamp {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  font-weight: 700;
+  background: var(--vc-ink);
+  color: #fff;
+  padding: 3px 10px;
+}
+.vc-progress {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--vc-mute);
+}
+.vc-switch {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--vc-red);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+/* ---- log ---- */
+.vc-log {
+  height: min(520px, 62vh);
+  overflow-y: auto;
+  padding: 20px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+.vc-msg {
+  max-width: 82%;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.8;
+  word-break: break-word;
+  animation: vc-in .22s ease-out;
+}
+.vc-bot {
+  align-self: flex-start;
+  background: var(--vc-paper);
+  border: 1px solid var(--vc-line-2);
+  border-left: 4px solid var(--vc-red);
+  font-family: var(--mincho);
+}
+.vc-user {
+  align-self: flex-end;
+  background: var(--vc-ink);
+  color: #fff;
+  white-space: pre-wrap;
+}
+
+.vc-typing { display: inline-flex; gap: 5px; align-items: center; padding: 16px 18px; }
+.vc-typing span {
+  width: 6px; height: 6px; background: var(--vc-mute); border-radius: 50%;
+  animation: vc-dot 1s infinite ease-in-out;
+}
+.vc-typing span:nth-child(2) { animation-delay: .15s; }
+.vc-typing span:nth-child(3) { animation-delay: .3s; }
+
+/* ---- summary ---- */
+.vc-summary-lead { margin: 0 0 8px; font-weight: 700; }
+.vc-summary { margin: 0; font-family: var(--gothic); font-size: 14px; }
+.vc-summary dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--vc-mute);
+  margin-top: 10px;
+}
+.vc-summary dd { margin: 2px 0 0; white-space: pre-wrap; }
+
+/* ---- dock (choices + input) ---- */
+.vc-dock {
+  border-top: 1px solid var(--vc-line);
+  padding: 12px 16px 14px;
+  background: var(--vc-paper);
+}
+.vc-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.vc-choices:empty { display: none; }
+.vc-choices + .vc-input:not([hidden]) { margin-top: 10px; }
+
+.vc-chip {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border: 2px solid var(--vc-red);
+  background: var(--vc-paper);
+  color: var(--vc-red);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.vc-chip:hover { background: var(--vc-red-pale); }
+.vc-chip:focus-visible, .vc-send:focus-visible, .vc-switch:focus-visible {
+  outline: 2px solid var(--vc-ink); outline-offset: 2px;
+}
+.vc-chip-primary { background: var(--vc-red); color: #fff; }
+.vc-chip-primary:hover { background: var(--vc-red-deep); border-color: var(--vc-red-deep); }
+.vc-chip-skip {
+  border-color: var(--vc-line-2);
+  color: var(--vc-ink-2);
+  font-weight: 400;
+}
+.vc-chip-skip:hover { background: var(--vc-bg-2); }
+
+.vc-input-row { display: flex; gap: 8px; align-items: flex-end; }
+.vc-text {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--vc-line-2);
+  font: inherit;
+  font-size: 16px;               /* iOS でズームしないように 16px 以上 */
+  line-height: 1.7;
+  resize: none;
+  background: var(--vc-paper);
+  color: var(--vc-ink);
+}
+.vc-text:focus { outline: 2px solid var(--vc-red); outline-offset: -1px; }
+.vc-send {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  background: var(--vc-red);
+  color: #fff;
+  border: 2px solid var(--vc-red);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vc-send:hover { background: var(--vc-red-deep); border-color: var(--vc-red-deep); }
+.vc-hint { margin: 6px 0 0; font-size: 12px; color: var(--vc-mute); }
+
+.vc-shake { animation: vc-shake .35s; outline: 2px solid var(--vc-red); }
+
+/* 元のフォームを隠す（テーマの display:flex より優先） */
+.vc-hidden-form[hidden] { display: none !important; }
+
+/* 「フォームで書く」に切り替えたとき */
+.vc.vc-collapsed .vc-log,
+.vc.vc-collapsed .vc-dock { display: none; }
+.vc.vc-collapsed + .vc-hidden-form { margin-top: 20px; }
+
+@keyframes vc-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes vc-dot { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+@keyframes vc-shake { 0%,100% { transform: none; } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-msg, .vc-typing span, .vc-shake { animation: none; }
+  .vc-log { scroll-behavior: auto; }
+}
+
+@media (max-width: 600px) {
+  .vc-log { height: 64vh; padding: 16px 12px 8px; }
+  .vc-msg { max-width: 90%; font-size: 14px; }
+  .vc-head, .vc-dock { padding-left: 12px; padding-right: 12px; }
+  .vc-chip { font-size: 13px; padding: 8px 12px; }
+}
