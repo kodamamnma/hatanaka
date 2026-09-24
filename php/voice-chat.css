@@ -128,18 +128,23 @@
   font: inherit;
   font-size: 14px;
   font-weight: 700;
-  padding: 8px 16px;
+  padding: 10px 18px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 2px solid var(--vc-red);
   background: var(--vc-paper);
   color: var(--vc-red);
+  border-radius: 4px;
   cursor: pointer;
-  transition: background .15s, color .15s;
+  transition: background .15s, color .15s, transform .15s;
 }
-.vc-chip:hover { background: var(--vc-red-pale); }
+.vc-chip:hover { background: var(--vc-red-pale); transform: translateY(-1px); }
 .vc-chip:focus-visible, .vc-send:focus-visible, .vc-switch:focus-visible {
   outline: 2px solid var(--vc-ink); outline-offset: 2px;
 }
-.vc-chip-primary { background: var(--vc-red); color: #fff; }
+.vc-chip-primary { background: var(--vc-red); color: #fff; border-color: var(--vc-red); }
 .vc-chip-primary:hover { background: var(--vc-red-deep); border-color: var(--vc-red-deep); }
 .vc-chip-skip {
   border-color: var(--vc-line-2);
@@ -167,13 +172,19 @@
   font-size: 14px;
   font-weight: 700;
   padding: 10px 20px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--vc-red);
   color: #fff;
   border: 2px solid var(--vc-red);
+  border-radius: 4px;
   cursor: pointer;
   white-space: nowrap;
+  transition: background .15s, transform .15s;
 }
-.vc-send:hover { background: var(--vc-red-deep); border-color: var(--vc-red-deep); }
+.vc-send:hover { background: var(--vc-red-deep); border-color: var(--vc-red-deep); transform: translateY(-1px); }
 .vc-hint { margin: 6px 0 0; font-size: 12px; color: var(--vc-mute); }
 
 .vc-shake { animation: vc-shake .35s; outline: 2px solid var(--vc-red); }

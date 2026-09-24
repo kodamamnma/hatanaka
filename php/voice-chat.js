@@ -413,7 +413,7 @@
     return self.say(self.summary())
       .then(function () {
         return self.choose({ choices: [
-          { label: '送信する', value: 'send', primary: true },
+          { label: '鹿児島の声を送信する（無料） →', value: 'send', primary: true },
           { label: '声を書き直す', value: 'edit' },
           { label: '最初からやり直す', value: 'restart' }
         ] });

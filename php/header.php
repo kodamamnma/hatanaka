@@ -84,7 +84,7 @@ echo wp_json_encode( $katarou_ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHE
     <ul class="nav">
       <li><a href="<?php echo esc_url( home_url('/') ); ?>"<?php if ( is_front_page() ) echo ' aria-current="page"'; ?>>HOME</a></li>
       <li><a href="<?php echo esc_url( home_url('/articles/') ); ?>"<?php if ( is_page('articles') ) echo ' aria-current="page"'; ?>>記事</a></li>
-      <li><a href="<?php echo esc_url( home_url('/submit/') ); ?>"<?php if ( is_page('submit') ) echo ' aria-current="page"'; ?>>声を届ける</a></li>
+      <li><a href="<?php echo esc_url( home_url('/submit/') ); ?>" class="btn-nav-cta"<?php if ( is_page('submit') ) echo ' aria-current="page"'; ?>>声・提案を届ける（1分）</a></li>
       <li><a href="<?php echo esc_url( home_url('/about/') ); ?>"<?php if ( is_page('about') ) echo ' aria-current="page"'; ?>>About</a></li>
     </ul>
   </div>
