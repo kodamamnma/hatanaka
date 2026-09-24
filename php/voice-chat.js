@@ -488,11 +488,46 @@
   };
 
   /* ------------------------------------------------------------------ */
+  /* 右下パネル（footer.php の .vc-float）                                 */
+  /* ------------------------------------------------------------------ */
+  function initFloat(wrap, fields) {
+    var launcher = wrap.querySelector('.vc-float__launcher');
+    var panel = wrap.querySelector('.vc-float__panel');
+    var closeBtn = wrap.querySelector('.vc-float__close');
+    if (!launcher || !panel) return;
+    var chat = null;
+
+    function open() {
+      panel.removeAttribute('hidden');
+      wrap.classList.add('vc-float--open');
+      launcher.setAttribute('aria-expanded', 'true');
+      // 開くまで会話を始めない：閉じたまま吹き出しのアニメーションが進むと、開いたときに途中から見えてしまう
+      if (!chat) { chat = new Chat(fields); chat.start(); return; }
+      var target = panel.querySelector('.vc-choices button, .vc-input:not([hidden]) textarea') || closeBtn;
+      if (target) target.focus({ preventScroll: true });
+    }
+    function close() {
+      panel.setAttribute('hidden', '');
+      wrap.classList.remove('vc-float--open');
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.focus({ preventScroll: true });
+    }
+
+    launcher.addEventListener('click', function () { panel.hasAttribute('hidden') ? open() : close(); });
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    // 送信後はこのページに戻ってくるので、結果（お礼・エラー）を見せるために自動で開く
+    if (wrap.querySelector('.form-msg')) open();
+  }
+
   function init() {
     var form = findForm();
     if (!form) return;
     var fields = mapFields(form);
     if (!fields.voice) return;
+    var floatWrap = form.closest('.vc-float');
+    if (floatWrap) return initFloat(floatWrap, fields);
     new Chat(fields).start();
   }
 

@@ -4,15 +4,13 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('katarou-style', get_stylesheet_uri(), [], '1.0');
     wp_enqueue_script('katarou-scripts', get_template_directory_uri() . '/scripts.js', [], '1.0', true);
 
-    // 声を届けるチャット：投稿ページ以外では不要なので読み込まない
-    if ( is_page_template('page-submit.php') ) {
-        wp_enqueue_style('katarou-voice-chat', get_template_directory_uri() . '/voice-chat.css', ['katarou-style'], '1.0');
-        wp_enqueue_script('katarou-voice-chat', get_template_directory_uri() . '/voice-chat.js', [], '1.0', true);
-        // サブディレクトリ設置でもリンク切れしないよう、記事一覧URLはWP側から渡す
-        wp_add_inline_script('katarou-voice-chat', 'window.VoiceChatConfig = ' . wp_json_encode([
-            'articlesUrl' => home_url('/articles/'),
-        ]) . ';', 'before');
-    }
+    // 声を届けるチャット：投稿ページ以外でも右下パネル（footer.php）から使うため全ページで読み込む
+    wp_enqueue_style('katarou-voice-chat', get_template_directory_uri() . '/voice-chat.css', ['katarou-style'], '1.1');
+    wp_enqueue_script('katarou-voice-chat', get_template_directory_uri() . '/voice-chat.js', [], '1.1', true);
+    // サブディレクトリ設置でもリンク切れしないよう、記事一覧URLはWP側から渡す
+    wp_add_inline_script('katarou-voice-chat', 'window.VoiceChatConfig = ' . wp_json_encode([
+        'articlesUrl' => home_url('/articles/'),
+    ]) . ';', 'before');
 });
 
 // 声の投稿フォーム処理

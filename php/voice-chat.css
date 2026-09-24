@@ -212,3 +212,100 @@
   .vc-head, .vc-dock { padding-left: 12px; padding-right: 12px; }
   .vc-chip { font-size: 13px; padding: 8px 12px; }
 }
+
+/* ============================================================
+   右下パネル（footer.php の .vc-float）— モバイルファースト
+   ============================================================ */
+.vc-float__launcher {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 110;                  /* 固定ヘッダー(100)・スマホ追従CTA(99)より前に出す */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 18px;
+  font-family: var(--gothic);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(20, 17, 13, .25);
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.vc-float__launcher:hover { background: var(--red-deep); border-color: var(--red-deep); transform: translateY(-2px); }
+.vc-float__launcher:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.vc-float__icon { flex-shrink: 0; }
+
+/* トップページのスマホ追従CTAと重ならないよう、その上に逃がす */
+body:has(.mobile-float-cta) .vc-float__launcher { bottom: 84px; }
+
+/* スマホでは入力しやすいよう全画面で開く */
+.vc-float__panel {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.vc-float__panel[hidden] { display: none; }
+.vc-float--open .vc-float__launcher { display: none; }
+
+.vc-float__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.vc-float__title { font-size: 14px; font-weight: 700; }
+.vc-float__close {
+  width: 44px;
+  height: 44px;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--paper);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.vc-float__close:focus-visible { outline: 2px solid var(--paper); outline-offset: -4px; }
+
+.vc-float__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;              /* 「フォームで書く」に切り替えたときにスクロールできるように */
+}
+.vc-float__body .vc { flex: 1; min-height: 0; padding: 0; border-left: 0; border-right: 0; border-bottom: 0; }  /* style.css の section の上下余白を打ち消す */
+.vc-float__body .vc-log { flex: 1; height: auto; min-height: 200px; }
+.vc-float__body .vc.vc-collapsed { flex: 0 0 auto; }
+.vc-float__body .submit-form { padding: 0 16px 16px; }
+.vc-float__body .form-msg { margin: 12px 16px; }
+
+@media (min-width: 601px) {
+  .vc-float__launcher,
+  body:has(.mobile-float-cta) .vc-float__launcher { right: 24px; bottom: 24px; }
+
+  .vc-float__panel {
+    inset: auto 24px 24px auto;
+    width: 400px;
+    height: min(640px, calc(100vh - 48px));
+    border: 1px solid var(--line-2);
+    box-shadow: 0 12px 40px rgba(20, 17, 13, .25);
+  }
+  .vc-float__body .submit-form .row { grid-template-columns: 1fr; }  /* 幅400pxでは3列が窮屈 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-float__launcher { transition: none; }
+  .vc-float__launcher:hover { transform: none; }
+}

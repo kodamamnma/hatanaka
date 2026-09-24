@@ -19,6 +19,25 @@
   </div>
 </footer>
 
+<?php if ( ! is_page_template('page-submit.php') ) : // 投稿ページはページ内にチャットがあるので出さない ?>
+<!-- ▼ 声を届けるチャット（全ページ右下） -->
+<div class="vc-float">
+  <button type="button" class="vc-float__launcher" aria-expanded="false" aria-controls="vc-float-panel">
+    <svg class="vc-float__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 4h16v12H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+    <span>声を届ける</span>
+  </button>
+  <div class="vc-float__panel" id="vc-float-panel" role="dialog" aria-label="声を届けるチャット" hidden>
+    <div class="vc-float__bar">
+      <span class="vc-float__title">声を届ける（匿名OK・約1分）</span>
+      <button type="button" class="vc-float__close" aria-label="チャットを閉じる">×</button>
+    </div>
+    <div class="vc-float__body">
+      <?php get_template_part('voice-form'); ?>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>
