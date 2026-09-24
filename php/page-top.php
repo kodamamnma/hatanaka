@@ -51,22 +51,6 @@ get_header(); ?>
     endif; ?>
   </section>
 
-  <!-- ▼ ソーシャルプルーフ（信頼実績カウンター） -->
-  <section class="social-proof-bar">
-    <div class="sp-item">
-      <span class="sp-num">120+</span>
-      <span class="sp-lbl">集まった住民の声</span>
-    </div>
-    <div class="sp-item">
-      <span class="sp-num">45+</span>
-      <span class="sp-lbl">地域課題の記事化実績</span>
-    </div>
-    <div class="sp-item">
-      <span class="sp-num">98%</span>
-      <span class="sp-lbl">投稿者の満足・納得度</span>
-    </div>
-  </section>
-
   <section>
     <div class="section-h">
       <h2><span class="stripe"></span>最近の記事</h2>
